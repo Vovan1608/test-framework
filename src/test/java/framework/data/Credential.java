@@ -1,14 +1,13 @@
 package framework.data;
 
 public class Credential {
-    private String email;
-    private String password;
+    private final String email;
+    private final String password;
 
     public Credential(String email, String password) {
         this.email = email;
         this.password = password;
     }
-
 
     public String getEmail() {
         return email;

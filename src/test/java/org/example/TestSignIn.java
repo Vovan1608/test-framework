@@ -15,10 +15,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.time.Duration;
 
 public class TestSignIn extends TestRunner{
-    private final String incorrectEmailMessage = "Please check if the email is written correctly";
-    private final String incorrectPasswordMessage = "Bad email or password";
-
-    private static GuestFunctions guestFunctions;
     @FindBy(css = "app-ubs .ubs-header-sing-in-img")
     private WebElement signInButton;
     @FindBy(css = ".ng-star-inserted > h1")
@@ -48,26 +44,26 @@ public class TestSignIn extends TestRunner{
     @FindBy(xpath = ".//img[@alt='close button']")
     private WebElement closeButton;
     private static WebDriver driver;
-//    @BeforeAll
-//    public static void setUp() {
-//        WebDriverManager.chromedriver().setup();
-//
-//        driver = new ChromeDriver();
-//        driver.get("https://www.greencity.social/");
-//        driver.manage().window().setSize(new Dimension(1264, 798));
-//
-//        guestFunctions = new GuestFunctions(driver);
-//    }
+    @BeforeAll
+    public static void setUp() {
+        WebDriverManager.chromedriver().setup();
 
-//    @BeforeEach
-//    public void initPageElements() {
-//        PageFactory.initElements(driver, this);
-//    }
+        driver = new ChromeDriver();
+        driver.get("https://www.greencity.social/");
+        driver.manage().window().setSize(new Dimension(1264, 798));
 
-//    @AfterAll
-//    public static void tearDown() {
-//        driver.quit();
-//    }
+        guestFunctions = new GuestFunctions(driver);
+    }
+
+    @BeforeEach
+    public void initPageElements() {
+        PageFactory.initElements(driver, this);
+    }
+
+    @AfterAll
+    public static void tearDown() {
+        driver.quit();
+    }
 
     @Test
     public void verifyTitle() {
@@ -107,6 +103,7 @@ public class TestSignIn extends TestRunner{
         signInButton.click();
         emailInput.sendKeys(email);
         passwordInput.sendKeys(password);
+        String incorrectEmailMessage = "Please check if the email is written correctly";
         assertThat(errorEmail.getText().trim(), is(incorrectEmailMessage));
         signInSubmitButton.click();
         closeButton.click();
@@ -136,6 +133,7 @@ public class TestSignIn extends TestRunner{
         passwordInput.sendKeys(password);
         signInSubmitButton.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        String incorrectPasswordMessage = "Bad email or password";
         assertThat(errorPassword.getText().trim(), is(incorrectPasswordMessage));
         closeButton.click();
     }

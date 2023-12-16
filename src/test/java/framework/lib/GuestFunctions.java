@@ -1,5 +1,6 @@
 package framework.lib;
 
+import framework.data.Credential;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +11,14 @@ public class GuestFunctions {
         this.driver = driver;
     }
 
-    public void signIn (String email, String password) {
-        driver.findElement(By.cssSelector("app-ubs .ubs-header-sing-in-img"));
-        driver.findElement(By.id("email"));
-        driver.findElement(By.id("password"));
+    public void signIn (Credential credential) {
+        driver.findElement(By.cssSelector("app-ubs .ubs-header-sing-in-img")).click();
+        driver.findElement(By.id("email")).click();
+        driver.findElement(By.id("email")).clear();
+        driver.findElement(By.id("email")).sendKeys(credential.getEmail());
+        driver.findElement(By.id("password")).click();
+        driver.findElement(By.id("password")).clear();
+        driver.findElement(By.id("password")).sendKeys(credential.getPassword());
         driver.findElement(By.cssSelector(".ubsStyle"));
     }
 }
