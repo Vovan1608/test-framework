@@ -1,6 +1,7 @@
 package framework.test;
 
 import framework.data.Credential;
+import framework.data.CredentialRepository;
 import net.bytebuddy.asm.MemberSubstitution;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,22 +21,20 @@ public class SignInValidEmailTest extends TestRunner{
 
     private static Stream<Arguments> provideEmails() {
         return Stream.of(
-                Arguments.of(new Credential("samplestest@greencity.com", "weyt3$Guew^")),
-                Arguments.of(new Credential("sadgmplestest@greencity.com", "weyt3$Guew^")),
-                Arguments.of(new Credential("test@multiline.dp.ua", "eyt3$Guew^"))
+                Arguments.of(CredentialRepository.getValidEmail1()),
+                Arguments.of(CredentialRepository.getValidEmail2()),
+                Arguments.of(CredentialRepository.getValidEmail3())
         );
     }
 
-    @ParameterizedTest(name = "{index} => email={0}, password={1}")
+    @ParameterizedTest(name = "{index} => credential={0}")
     @MethodSource("provideEmails")
     public void checkEmail(Credential credential) {
-
         guestFunctions.signIn(credential);
 
-        String actualEmail = driver.findElement(By.id("email")).getText();
+        String actualEmail = driver.findElement(By.id("email")).getAttribute("value");
         String expectedEmail = credential.getEmail();
 
         Assertions.assertEquals(actualEmail, expectedEmail);
     }
-
 }
