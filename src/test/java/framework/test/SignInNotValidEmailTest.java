@@ -2,7 +2,6 @@ package framework.test;
 
 import framework.data.Credential;
 import framework.data.NotValidEmailRepository;
-import framework.data.ValidEmailRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
