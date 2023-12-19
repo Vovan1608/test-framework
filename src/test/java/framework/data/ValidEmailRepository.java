@@ -1,7 +1,7 @@
 package framework.data;
 
-public class CredentialRepository {
-    private CredentialRepository() {
+public class ValidEmailRepository {
+    private ValidEmailRepository() {
     }
 
     public static Credential getDefault() {

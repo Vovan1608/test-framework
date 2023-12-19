@@ -1,17 +1,13 @@
 package framework.test;
 
 import framework.data.Credential;
-import framework.data.CredentialRepository;
-import net.bytebuddy.asm.MemberSubstitution;
+import framework.data.ValidEmailRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import java.time.Duration;
 import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -21,9 +17,9 @@ public class SignInValidEmailTest extends TestRunner{
 
     private static Stream<Arguments> provideEmails() {
         return Stream.of(
-                Arguments.of(CredentialRepository.getValidEmail1()),
-                Arguments.of(CredentialRepository.getValidEmail2()),
-                Arguments.of(CredentialRepository.getValidEmail3())
+                Arguments.of(ValidEmailRepository.getValidEmail1()),
+                Arguments.of(ValidEmailRepository.getValidEmail2()),
+                Arguments.of(ValidEmailRepository.getValidEmail3())
         );
     }
 
