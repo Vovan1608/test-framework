@@ -20,13 +20,16 @@ public class SignInValidEmailTest extends TestRunner{
 
     private static Stream<Arguments> provideEmails() {
         return Stream.of(
-                Arguments.of(new Credential("samplestest@greencity.com", "weyt3$Guew^"))
+                Arguments.of(new Credential("samplestest@greencity.com", "weyt3$Guew^")),
+                Arguments.of(new Credential("sadgmplestest@greencity.com", "weyt3$Guew^")),
+                Arguments.of(new Credential("test@multiline.dp.ua", "eyt3$Guew^"))
         );
     }
 
     @ParameterizedTest(name = "{index} => email={0}, password={1}")
     @MethodSource("provideEmails")
     public void checkEmail(Credential credential) {
+
         guestFunctions.signIn(credential);
 
         String actualEmail = driver.findElement(By.id("email")).getText();
