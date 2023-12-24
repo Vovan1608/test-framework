@@ -8,14 +8,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.stream.Stream;
 
 public class SignInNotValidPasswordTest extends TestRunner{
-    private static final Logger logger = LogManager.getLogger(SignInNotValidPasswordTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(SignInNotValidPasswordTest.class);
     private static Stream<Arguments> providePasswords() {
         return Stream.of(
                 Arguments.of(NotValidPasswordRepository.getNotValidPassword1()),
