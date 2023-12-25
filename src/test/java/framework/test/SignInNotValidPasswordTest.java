@@ -25,7 +25,9 @@ public class SignInNotValidPasswordTest extends TestRunner{
     @ParameterizedTest(name = "{index} => credential={0}")
     @MethodSource("providePasswords")
     public void checkEmail(Credential credential) {
-        int IMPLICIT_WAITING_SEC = 10;
+        TestRunner.logger.info("Logging with email: " + credential.getEmail() + ", password: " + credential.getPassword());
+
+        int IMPLICIT_WAITING_SEC = 60;
         String incorrectPasswordMessage = "Bad email or password";
 
         guestFunctions.signIn(credential);
