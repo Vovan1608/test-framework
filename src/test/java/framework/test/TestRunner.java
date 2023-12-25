@@ -19,7 +19,7 @@ public abstract class TestRunner {
     protected static GuestFunctions guestFunctions;
     protected static WebDriver driver;
 
-    private static final Logger logger = LoggerFactory.getLogger(SignInNotValidPasswordTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestRunner.class);
 
     @BeforeAll
     public static void setUp() {
@@ -39,6 +39,7 @@ public abstract class TestRunner {
 
     @AfterEach
     public void  tearThis() {
+        logger.info("Logging");
         driver.findElement(By.xpath(".//img[@alt='close button']")).click();
     }
 
