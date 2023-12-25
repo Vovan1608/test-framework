@@ -14,7 +14,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SignInValidEmailTest extends TestRunner{
-
     private static Stream<Arguments> provideEmails() {
         return Stream.of(
                 Arguments.of(ValidEmailRepository.getValidEmail1()),
@@ -26,6 +25,8 @@ public class SignInValidEmailTest extends TestRunner{
     @ParameterizedTest(name = "{index} => credential={0}")
     @MethodSource("provideEmails")
     public void checkEmail(Credential credential) {
+        TestRunner.logger.info("Logging with email: " + credential.getEmail() + ", password: " + credential.getPassword());
+
         guestFunctions.signIn(credential);
 
         String actualEmail = driver.findElement(By.id("email")).getAttribute("value");

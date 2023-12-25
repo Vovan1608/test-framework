@@ -2,6 +2,7 @@ package framework.test;
 
 import framework.lib.GuestFunctions;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.log4j.BasicConfigurator;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,11 +16,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class TestRunner {
+    protected static final Logger logger = LoggerFactory.getLogger(TestRunner.class);
     private static final String BASE_URL = "https://www.greencity.social/#/ubs";
     protected static GuestFunctions guestFunctions;
     protected static WebDriver driver;
-
-    private static final Logger logger = LoggerFactory.getLogger(TestRunner.class);
 
     @BeforeAll
     public static void setUp() {
@@ -34,12 +34,11 @@ public abstract class TestRunner {
 
     @BeforeEach
     public void setUpThis() {
-        logger.info("Logging");
+        BasicConfigurator.configure();
     }
 
     @AfterEach
     public void  tearThis() {
-        logger.info("Logging");
         driver.findElement(By.xpath(".//img[@alt='close button']")).click();
     }
 
