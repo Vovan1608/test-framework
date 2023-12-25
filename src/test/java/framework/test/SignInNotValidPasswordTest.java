@@ -8,14 +8,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.time.Duration;
 import java.util.stream.Stream;
 
 public class SignInNotValidPasswordTest extends TestRunner{
-    private static final Logger logger = LoggerFactory.getLogger(SignInNotValidPasswordTest.class);
+
     private static Stream<Arguments> providePasswords() {
         return Stream.of(
                 Arguments.of(NotValidPasswordRepository.getNotValidPassword1()),
@@ -28,7 +25,6 @@ public class SignInNotValidPasswordTest extends TestRunner{
     @ParameterizedTest(name = "{index} => credential={0}")
     @MethodSource("providePasswords")
     public void checkEmail(Credential credential) {
-        logger.info("Logging");
         int IMPLICIT_WAITING_SEC = 8;
         String incorrectPasswordMessage = "Bad email or password";
 

@@ -11,10 +11,15 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class TestRunner {
     private static final String BASE_URL = "https://www.greencity.social/#/ubs";
     protected static GuestFunctions guestFunctions;
     protected static WebDriver driver;
+
+    private static final Logger logger = LoggerFactory.getLogger(SignInNotValidPasswordTest.class);
 
     @BeforeAll
     public static void setUp() {
@@ -29,7 +34,7 @@ public abstract class TestRunner {
 
     @BeforeEach
     public void setUpThis() {
-
+        logger.info("Logging");
     }
 
     @AfterEach
