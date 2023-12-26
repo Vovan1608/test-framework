@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class TestRunner {
-    protected static final Logger logger = LoggerFactory.getLogger(TestRunner.class);
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final String BASE_URL = "https://www.greencity.social/#/ubs";
     protected static GuestFunctions guestFunctions;
     protected static WebDriver driver;
@@ -39,6 +39,7 @@ public abstract class TestRunner {
 
     @AfterEach
     public void  tearThis() {
+//        logger.error("test failed");
         driver.findElement(By.xpath(".//img[@alt='close button']")).click();
     }
 

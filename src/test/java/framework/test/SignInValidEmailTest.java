@@ -25,7 +25,7 @@ public class SignInValidEmailTest extends TestRunner{
     @ParameterizedTest(name = "{index} => credential={0}")
     @MethodSource("provideEmails")
     public void checkEmail(Credential credential) {
-        TestRunner.logger.info("Logging with email: " + credential.getEmail() + ", password: " + credential.getPassword());
+        logger.info("Logging with email: " + credential.getEmail() + ", password: " + credential.getPassword());
 
         guestFunctions.signIn(credential);
 
